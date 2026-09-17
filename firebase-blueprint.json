@@ -1,0 +1,101 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile with 2FA security configuration and recovery settings",
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "User's primary email address"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Display name or recovery moniker"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp when the account was registered"
+        },
+        "twoFactorEnabled": {
+          "type": "boolean",
+          "description": "Whether two-factor authentication is active on the account"
+        },
+        "twoFactorSecret": {
+          "type": "string",
+          "description": "TOTP secret or 2FA seed for generating time-based codes"
+        },
+        "backupCodes": {
+          "type": "array",
+          "description": "One-time emergency recovery codes"
+        },
+        "sponsorName": {
+          "type": "string",
+          "description": "Name of accountability partner or sponsor"
+        },
+        "sponsorPhone": {
+          "type": "string",
+          "description": "Phone number of accountability partner or sponsor"
+        }
+      },
+      "required": ["email", "createdAt"]
+    },
+    "Habit": {
+      "title": "Habit",
+      "description": "Accountability habit or anchor routine",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique habit identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Habit title or anchor activity"
+        },
+        "category": {
+          "type": "string",
+          "enum": ["Physical", "Mental", "Social", "Recovery", "Mental Health", "Finance"],
+          "description": "Category pillar"
+        },
+        "frequency": {
+          "type": "string",
+          "enum": ["daily", "weekdays", "weekends"],
+          "description": "Cadence schedule"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Lucide icon identifier"
+        },
+        "isNonNegotiable": {
+          "type": "boolean",
+          "description": "Whether this is a core non-negotiable anchor habit"
+        },
+        "completedDates": {
+          "type": "array",
+          "description": "List of YYYY-MM-DD completion dates"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Creation timestamp"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Why this matters or accountability reflection"
+        }
+      },
+      "required": ["id", "name", "category", "frequency", "isNonNegotiable", "completedDates"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile, 2FA security state, and recovery settings"
+    },
+    "/users/{userId}/habits/{habitId}": {
+      "schema": "Habit",
+      "description": "Collection of habits belonging to the user"
+    }
+  }
+}

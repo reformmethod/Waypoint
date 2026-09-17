@@ -1,0 +1,6 @@
+{
+  "name": "Daily Habit & Recovery Tracker",
+  "description": "Waypoint enterprise life-infrastructure platform featuring Soft Monolith design, Child-First Youth Justice & SLCN-aware support, paced court preparation, reparation tracking, holding resilience score, key worker session-prep brief, and voluntary transition continuity pass.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
